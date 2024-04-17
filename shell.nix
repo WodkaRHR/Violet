@@ -184,8 +184,34 @@ pkgs.mkShellNoCC {
           runHook postInstall
         '';
       };
+
+      # Build `armips`
+      armips = stdenv.mkDerivation rec {
+        pname = "armips";
+        version = "a8d71f0f279eb0d30ecf6af51473b66ae0cf8e8d";
+
+        src = fetchFromGitHub {
+          owner = "Kingcom";
+          repo = pname;
+          rev = version;
+          fetchSubmodules = true;
+          sha256 = "+W9SwlM6CqK8bz07U3yFgZNydo2mI4TvMvepPiqtIS4=";
+        };
+
+        nativeBuildInputs = [
+          cmake
+        ];
+
+          installPhase = ''
+            runHook preInstall
+            mkdir -p "$out/bin"
+            cp armips "$out/bin"
+            runHook postInstall
+          '';
+      };
     in
       [
+        armips
         gcc-arm-embedded
         grit
         midi2agb
