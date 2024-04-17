@@ -191,6 +191,7 @@ pkgs.mkShellNoCC {
         midi2agb
         nixgl.nixGLIntel
         python3
+        python3.pkgs.pyaml
         pyagb
         wav2agb
       ];
