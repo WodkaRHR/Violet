@@ -58,7 +58,11 @@ pkgs.mkShellNoCC {
                   sha256 = "Z7DTcUBcT9XzWv7P6zfUtzvBGPGHxSqWXtaNYvWbZ7M=";
                 };
 
-                pytestCheckPhase = "true";
+                buildInputs =
+                  with python3.pkgs;
+                  [
+                    pyqt5
+                  ];
 
                 propagatedBuildInputs =
                   with python3.pkgs;
