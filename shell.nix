@@ -128,9 +128,7 @@ pkgs.mkShellNoCC {
             ];
 
         postInstall = ''
-          tmpFile="$(mktemp)"
-          pymap="$out/bin/$(basename "$tmpFile")"
-          rm "$tmpFile"
+          pymap="$(mktemp --dry-run --tmpdir="$out/bin")"
           mv "$out/bin/pymapgui.py" "$pymap"
           makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/pymapgui.py" --add-flags "$pymap"
         '';
