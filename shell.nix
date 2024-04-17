@@ -141,22 +141,12 @@ pkgs.mkShellNoCC {
       };
     in
       [
+        nixgl.nixGLIntel
         python3.pkgs.pip
         python3
         pyagb
         python3.pkgs.pyqt5
-        # qt5.full
-        # qt5.qtbase
-        # libsForQt5.qtwayland
-      ] ++
-      (with (
-          import (fetchTarball "https://github.com/nix-community/nixGL/tarball/def00794f963f51ccdcf19a512006bd7f9c78970") {
-            inherit pkgs;
-          });
-      [
-        nixGLIntel
-        auto.nixVulkanNvidia
-      ]);
+      ];
 
     # Dependencies for running `pymapgui`
     nativeBuildInputs =
