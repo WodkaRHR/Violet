@@ -1,8 +1,12 @@
 let
   nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-unstable";
   pkgs = import nixpkgs {
-    config = {};
     overlays = [];
+    config = {
+      permittedInsecurePackages = [
+        "freeimage-unstable-2021-11-01"
+      ];
+    };
   };
 
   nixgl = (
@@ -133,9 +137,29 @@ pkgs.mkShellNoCC {
           makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/pymapgui.py" --add-flags "$pymap"
         '';
       };
+      grit = stdenv.mkDerivation rec {
+        pname = "grit";
+        version = "0.8.17";
+
+        src = fetchFromGitHub {
+          owner = "devKitPro";
+          repo = pname;
+          rev = "v${version}";
+          sha256 = "dIF59akcVaRH5/y7ZQ2FlGIOD8q3RS4bt1k5cEVqtUw=";
+        };
+
+        nativeBuildInputs = [
+          autoreconfHook
+        ];
+
+        buildInputs = [
+          freeimage
+        ];
+      };
     in
       [
         gcc-arm-embedded
+        grit
         nixgl.nixGLIntel
         python3.pkgs.pip
         python3
