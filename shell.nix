@@ -111,9 +111,10 @@ pkgs.mkShellNoCC {
             ];
 
         postInstall = ''
-          pymap="$(mktemp --dry-run --tmpdir="$out/bin")"
-          mv "$out/bin/pymapgui.py" "$pymap"
-          makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/pymapgui.py" --add-flags "$pymap"
+          binName="pymapgui.py"
+          pymap="$(mktemp -d --tmpdir="$out")/$binName"
+          mv "$out/bin/$binName" "$pymap"
+          makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/$binName" --add-flags "$pymap"
         '';
       };
       grit = stdenv.mkDerivation rec {
