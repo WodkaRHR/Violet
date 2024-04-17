@@ -89,29 +89,6 @@ pkgs.mkShellNoCC {
           rm -rf pymap/gui/deprecated
           '';
 
-        setuptoolsCheckPhase = "true";
-
-        buildInputs =
-          with python3.pkgs;
-            [
-              libGL
-              libxkbcommon
-
-              pip
-              pyopengl-accelerate
-              scipy
-              setuptools
-              wget
-              wheel
-        #     ];
-
-        # propagatedBuildInputs =
-        #   with python3.pkgs;
-        #     [
-              numpy
-              pyqt5
-            ];
-
         propagatedBuildInputs =
           with python3.pkgs;
             [
@@ -120,7 +97,9 @@ pkgs.mkShellNoCC {
               deepdiff
               nixgl.nixGLIntel
               numpy
+              pip
               pypng
+              pyqt5
               pyqtgraph
               (
                 # Use PyQt5 version of pillow in `scikit-image` and its dependencies
@@ -161,10 +140,8 @@ pkgs.mkShellNoCC {
         gcc-arm-embedded
         grit
         nixgl.nixGLIntel
-        python3.pkgs.pip
         python3
         pyagb
-        python3.pkgs.pyqt5
       ];
 
     # Dependencies for running `pymapgui`
