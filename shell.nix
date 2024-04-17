@@ -202,12 +202,12 @@ pkgs.mkShellNoCC {
           cmake
         ];
 
-          installPhase = ''
-            runHook preInstall
-            mkdir -p "$out/bin"
-            cp armips "$out/bin"
-            runHook postInstall
-          '';
+        installPhase = ''
+          runHook preInstall
+          mkdir -p "$out/bin"
+          cp armips "$out/bin"
+          runHook postInstall
+        '';
       };
 
       # Patch `mgba` to work with nixGL
