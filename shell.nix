@@ -96,18 +96,24 @@ pkgs.mkShellNoCC {
           rm -rf pymap/gui/deprecated
           '';
 
+        nativeBuildInputs =
+          with python3.pkgs;
+          [
+            pip
+          ];
+
         propagatedBuildInputs =
           with python3.pkgs;
             [
               appdirs
               colormath
               deepdiff
-              nixgl.nixGLIntel
               numpy
-              pip
+            pillow
               pypng
               pyqt5
               pyqtgraph
+            scipy
               (
                 # Use PyQt5 version of pillow in `scikit-image` and its dependencies
                 scikit-image.override {
@@ -137,11 +143,8 @@ pkgs.mkShellNoCC {
           sha256 = "dIF59akcVaRH5/y7ZQ2FlGIOD8q3RS4bt1k5cEVqtUw=";
         };
 
-        nativeBuildInputs = [
-          autoreconfHook
-        ];
-
         buildInputs = [
+          autoreconfHook
           freeimage
         ];
       };
@@ -204,7 +207,7 @@ pkgs.mkShellNoCC {
           sha256 = "+W9SwlM6CqK8bz07U3yFgZNydo2mI4TvMvepPiqtIS4=";
         };
 
-        nativeBuildInputs = [
+        buildInputs = [
           cmake
         ];
 
