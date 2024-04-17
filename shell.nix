@@ -3,8 +3,6 @@ let
   pkgs = import nixpkgs {
     config = {};
     overlays = [];
-    # Support for downloading the NVidia driver
-    config.allowUnfree = true;
   };
 
   nixgl = (
@@ -141,6 +139,7 @@ pkgs.mkShellNoCC {
       };
     in
       [
+        gcc-arm-embedded
         nixgl.nixGLIntel
         python3.pkgs.pip
         python3
@@ -161,6 +160,7 @@ pkgs.mkShellNoCC {
     QT_QPA_PLATFORM = "xcb";
     QT_XCB_GL_INTEGRATION = "xcb_glx";
 
+    # Allow using Qt5 in nix shell
     shellHook = ''
       setQtEnvironment=$(mktemp)
       random=$(openssl rand -base64 20 | sed "s/[^a-zA-Z0-9]//g")
