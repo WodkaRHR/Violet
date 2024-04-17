@@ -45,6 +45,7 @@ pkgs.mkShellNoCC {
               pytestCheckPhase = "true";
               pythonCatchConflictsPhase = "true";
             }));
+
       # Remove unnecessary (and conflicting) dependencies from `pyqtgraph`
       pyqtgraph = (
         python3.pkgs.pyqtgraph.overrideAttrs
@@ -117,6 +118,8 @@ pkgs.mkShellNoCC {
           makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/$binName" --add-flags "$pymap"
         '';
       };
+
+      # Build `grit`
       grit = stdenv.mkDerivation rec {
         pname = "grit";
         version = "0.8.17";
@@ -136,6 +139,30 @@ pkgs.mkShellNoCC {
           freeimage
         ];
       };
+
+      # Build `wav2agb`
+      wav2agb = stdenv.mkDerivation rec {
+        pname = "wav2agb";
+        version = "b461c20e1da68a95b4084456bf5fe651eb10a17f";
+
+        src = fetchFromGitHub {
+          owner = "ipatix";
+          repo = pname;
+          rev = version;
+          sha256 = "fHK/pgZLj1sMhS+JZ5gi2lP+Jn47h0Au1dPXWfqDZ6M=";
+        };
+
+        nativeBuildInputs = [
+          gcc12
+        ];
+
+        installPhase = ''
+          runHook preInstall
+          mkdir -p "$out/bin"
+          cp wav2agb "$out/bin"
+          runHook postInstall
+        '';
+      };
     in
       [
         gcc-arm-embedded
@@ -143,6 +170,7 @@ pkgs.mkShellNoCC {
         nixgl.nixGLIntel
         python3
         pyagb
+        wav2agb
       ];
 
     # Dependencies for running `pymapgui`
