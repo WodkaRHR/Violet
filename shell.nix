@@ -43,7 +43,6 @@ pkgs.mkShellNoCC {
               ];
 
               pytestCheckPhase = "true";
-              pythonCatchConflictsPhase = "true";
             }));
 
       # Remove unnecessary (and conflicting) dependencies from `pyqtgraph`
