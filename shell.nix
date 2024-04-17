@@ -83,10 +83,13 @@ pkgs.mkShellNoCC {
 
         preBuild = ''
           export HOME=$(pwd)
+          # Fix syntax error in `pyagb`
           sed -i \
             -e "s/\(\"\),\?$/\1,/" \
             -e "\$a }" \
             pymap/config/description.py
+
+          # Remove broken files
           rm -rf pymap/gui/deprecated
           '';
 
