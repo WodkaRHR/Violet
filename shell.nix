@@ -245,6 +245,7 @@ pkgs.mkShellNoCC {
     in
       [
         armips
+        bc
         gcc-arm-embedded
         grit
         mgba
