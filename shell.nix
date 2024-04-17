@@ -132,9 +132,7 @@ pkgs.mkShellNoCC {
           pymap="$out/bin/$(basename "$tmpFile")"
           rm "$tmpFile"
           mv "$out/bin/pymapgui.py" "$pymap"
-          echo "dumping info about nixGL"
           makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/pymapgui.py" --add-flags "$pymap"
-          echo "end dump"
         '';
       };
     in
