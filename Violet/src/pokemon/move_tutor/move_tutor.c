@@ -1,7 +1,7 @@
 #include "types.h"
 #include "pokemon/moves.h"
 #include "constants/attacks.h"
-#include "constants/move_tutor.h"
+#include "constants/move_tutors.h"
 #include "text.h"
 #include "attack.h"
 #include "vars.h"

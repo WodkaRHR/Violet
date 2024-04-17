@@ -17,7 +17,7 @@
 #include "fading.h"
 #include "vars.h"
 #include "pokemon/move_relearner.h"
-#include "constants/move_tutor.h"
+#include "constants/move_tutors.h"
 
 EWRAM bool (*pokemon_party_menu_choose_mon_generic_mon_is_eligible)(pokemon*) = NULL;
 

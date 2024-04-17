@@ -4,7 +4,7 @@
 #include "types.h"
 #include "list_menu.h"
 #include "pokemon/virtual.h"
-#include "constants/move_tutor.h"
+#include "constants/move_tutors.h"
 #include "constants/pokemon_types.h"
 
 typedef struct {
