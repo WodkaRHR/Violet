@@ -209,11 +209,36 @@ pkgs.mkShellNoCC {
             runHook postInstall
           '';
       };
+
+      # Patch `mgba` to work with nixGL
+      mgba = runCommand "mgba" {
+        buildInputs = [
+          pkgs.makeWrapper
+        ];
+      } ''
+        mkdir "$out"
+
+        # Link all files from original `mgba`
+        ln -s "${pkgs.mgba}"/* "$out"
+
+        # Create `bin` folder with symlinks to the contents of `mgba`s `bin` folder
+        rm "$out/bin"
+        mkdir "$out/bin"
+        ln -s "${pkgs.mgba}"/bin/* "$out/bin"
+
+        # Replace `mgba` and `mgba-qt` with `nixGL` call
+        for file in mgba mgba-qt
+        do
+          rm "$out/bin/$file";
+          makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/$file" --add-flags "${pkgs.mgba}/bin/$file"
+        done
+      '';
     in
       [
         armips
         gcc-arm-embedded
         grit
+        mgba
         midi2agb
         nixgl.nixGLIntel
         python3
