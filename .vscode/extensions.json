@@ -2,10 +2,12 @@
 	"recommendations": [
 		"bungcip.better-toml",
 		"dan-c-underwood.arm",
+		"janisdd.vscode-edit-csv",
+		"llvm-vs-code-extensions.vscode-clangd",
 		"ms-python.python",
-		"ms-vscode.cpptools",
-		"ms-vscode.cpptools",
-		"ms-vscode.hexeditor",
-		"janisdd.vscode-edit-csv"
+		"ms-vscode.hexeditor"
+	],
+	"unwantedRecommendations": [
+		"ms-vscode.cpptools"
 	]
 }
