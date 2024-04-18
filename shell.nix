@@ -1,5 +1,5 @@
 let
-  nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/nixos-unstable";
+  nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/tarball/2fd19c8be2551a61c1ddc3d9f86d748f4db94f00";
   pkgs = import nixpkgs {
     overlays = [];
     config = {
