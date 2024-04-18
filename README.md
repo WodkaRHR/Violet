@@ -35,8 +35,5 @@ $ make all
 There is a map called `map_4_3_debug` where you can place scripts or npcs for entering experimental scenarios.  
 You can get to the map by loading the cheat file located at `Violet/sav/Debug Mode.clt` and holding <kbd>L</kbd> + <kbd>R</kbd> and <kbd>A</kbd> while examining the console in the player's room.
 
-## ToDo
-  - Make use of [Midi2Agb](https://github.com/ipatix/midi2agb) instead of `mid2agb`.
-
 <!--- References -->
 [SoundFontRipper]: https://github.com/WodkaRHR/gba-mus-ripper
