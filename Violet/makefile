@@ -17,16 +17,15 @@ $(shell \
 	fi;)
 
 define loadPathConfig
-	$(or
-		$(shell \
-			set -o allexport; \
-			. "$(ENV_PATH)"; \
-			set +o allexport; \
-			cd "$$(dirname "$(ENV_PATH)")"; \
-			if [ ! -z "$$$(1)" ]; \
-			then \
-				echo "$$(realpath -m "$$$(1)")"; \
-			fi),$(2),$(3))
+$(or $(shell \
+		set -o allexport; \
+		. "$(ENV_PATH)"; \
+		set +o allexport; \
+		cd "$$(dirname "$(ENV_PATH)")"; \
+		if [ ! -z "$$$(1)" ]; \
+		then \
+			echo "$$(realpath -m "$$$(1)")"; \
+		fi),$(2),$(3))
 endef
 
 ifneq ($(.SHELLSTATUS),0)
