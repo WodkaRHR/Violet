@@ -219,6 +219,35 @@ pkgs.mkShellNoCC {
         '';
       };
 
+      # Build `gba-mus-ripper`
+      gba-mus-ripper = stdenv.mkDerivation rec {
+        pname = "gba-mus-ripper";
+        version = "1211a9b8426fa79d2e29e394fa900c8ad56865b5";
+
+        src = fetchFromGitHub {
+          owner = "dfuchsgruber";
+          repo = pname;
+          rev = version;
+          sha256 = "DMAHsiYurMufqQGdllhh2Yk2Qm8jOxAiwx56y8mhp08=";
+        };
+
+        preBuild = ''
+          sed -i -e  "s/^FLAGS=/\0 -Wno-format-security /" Makefile
+        '';
+
+        installPhase = ''
+          runHook preInstall
+          mkdir -p "$out/bin"
+          cp out/* "$out/bin"
+          runHook postInstall
+        '';
+
+        nativeBuildInputs = [
+          glibc.static
+          gcc12
+        ];
+      };
+
       # Patch `mgba` to work with nixGL
       mgba = runCommand "mgba" {
         buildInputs = [
@@ -246,6 +275,7 @@ pkgs.mkShellNoCC {
       [
         armips
         bc
+        gba-mus-ripper
         gcc-arm-embedded
         grit
         mgba
