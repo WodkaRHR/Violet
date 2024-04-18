@@ -1,3 +1,27 @@
+SHELL=bash
+
+$(shell \
+	{ \
+		envFile=".env"; \
+		envPath="../$$envFile";  \
+		\
+		if [ ! -f "$$envPath" ]; \
+		then \
+			echo "The environment file \`$$envFile\` could not be found!"; \
+			echo "Please enter all necessary settings in the newly created $$envFile file located at $$(realpath --relative-to "$$(pwd)" "$$envPath")."; \
+			cp ../.env.template "$$envPath"; \
+			false; \
+		else \
+			set -o allexport; \
+			. "$$envPath"; \
+			set +o allexport; \
+		fi; \
+	} 1>&2)
+
+ifneq ($(.SHELLSTATUS),0)
+$(error Warning: Please review the console output for more information)
+endif
+
 WAV2AGB=@wav2agb
 AR=arm-none-eabi-ar
 AS=@arm-none-eabi-as
@@ -128,6 +152,9 @@ define build_list
 endef
 
 .PHONY: all clean soundfont test
+
+test:
+	@echo $(BASEROM)
 
 $(CONSTANTSHAS): include/as/%.s: %.const
 	$(shell mkdir -p $(dir $@))
