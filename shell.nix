@@ -283,10 +283,15 @@ pkgs.mkShellNoCC (
       midi2agb
       nixgl.nixGLIntel
       python3
-      python3.pkgs.pyaml
       pyagb
       wav2agb
-    ];
+    ] ++ (
+      with python3.pkgs;
+      [
+        ipykernel
+        pyaml
+      ]
+    );
 
     # Dependencies for running `pymapgui`
     nativeBuildInputs =
