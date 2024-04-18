@@ -108,11 +108,11 @@ pkgs.mkShellNoCC (
             colormath
             deepdiff
             numpy
-          pillow
+            pillow
             pypng
             pyqt5
             pyqtgraph
-          scipy
+            scipy
             (
               # Use PyQt5 version of pillow in `scikit-image` and its dependencies
               scikit-image.override {
