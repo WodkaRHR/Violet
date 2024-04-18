@@ -6,11 +6,8 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "pipenv",
+            "command": "make",
             "args": [
-                "run",
-                "--",
-                "make",
                 "-j$(nproc)",
                 "-C",
                 "Violet",
@@ -28,11 +25,8 @@
         {
             "label": "Clean",
             "type": "shell",
-            "command": "pipenv",
+            "command": "make",
             "args": [
-                "run",
-                "--",
-                "make",
                 "-C",
                 "Violet",
                 "clean"
