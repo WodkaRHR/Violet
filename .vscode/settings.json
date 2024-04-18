@@ -10,8 +10,7 @@
         "*.grit": "plaintext",
         "*.flags": "plaintext"
     },
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
+    "python.defaultInterpreterPath": "python",
     "workbench.editorAssociations": {
         "*.gba": "hexEditor.hexedit",
         "*.ipynb": "jupyter-notebook"
