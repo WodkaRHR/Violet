@@ -161,7 +161,9 @@ define build_list
 	$(file >>$(1),$(CLOSEPAREN))
 endef
 
-.PHONY: all clean soundfont test
+.PHONY: all clean soundfont test init
+
+init:
 
 $(CONSTANTSHAS): include/as/%.s: %.const
 	$(shell mkdir -p $(dir $@))
