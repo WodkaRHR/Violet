@@ -4,6 +4,8 @@
 		"dan-c-underwood.arm",
 		"janisdd.vscode-edit-csv",
 		"llvm-vs-code-extensions.vscode-clangd",
+		"mechatroner.rainbow-csv",
+		"mkhl.direnv",
 		"ms-python.python",
 		"ms-vscode.hexeditor"
 	],
