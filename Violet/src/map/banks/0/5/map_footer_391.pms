@@ -11813,5 +11813,6 @@
 		"field_1A": 0
 	},
 	"label": "map_footer_391",
-	"type": "footer"
+	"type": "footer",
+	"smart_shapes": []
 }

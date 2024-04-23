@@ -73,7 +73,7 @@ bool block_cloud_ledge_triggered(s16 x, s16 y, u8 direction) {
     return false;
 }
 
-static u8 npc_player_get_collision_after_ledge(npc *player, s16 x, s16 y, u8 direction, u8 jump_over) {
+static u8 npc_player_get_collision_after_ledge(const npc *player, s16 x, s16 y, u8 direction, u8 jump_over) {
     // Check if the block "after" the ledge yields no collision on its own
     npc dummy = *player;
     for (; jump_over > 0; jump_over--) {
@@ -85,9 +85,8 @@ static u8 npc_player_get_collision_after_ledge(npc *player, s16 x, s16 y, u8 dir
 }
 
 
-int npc_player_attempt_step(npc *player, s16 x, s16 y, u8 direction, int param_5) {
-    (void) param_5; // unused in fire red
-    int collision = npc_attempt_diagonal_move(player, x, y, direction);
+u8 npc_get_collision_at(const npc *player, s16 x, s16 y, u8 direction, UNUSED u16 behaviour) {
+    u8 collision = npc_attempt_diagonal_move(player, x, y, direction);
     if (collision == COLLISION_HEIGHT_MISMATCH && npc_player_attempt_transition_water_to_land(x, y, direction)) {
         return COLLISION_STOP_SURFING;
     } else if (collision == COLLISION_HEIGHT_MISMATCH && npc_player_attempt_transition_land_to_water()) {
@@ -143,6 +142,8 @@ int npc_player_attempt_step(npc *player, s16 x, s16 y, u8 direction, int param_5
         } else {
             return COLLISION_LADDER_BLOCKED;
         }      
+    } else if (checkflag(FLAG_PLAYER_ON_MINECART)) {
+        return collision;      
     }
     return collision;
 }
@@ -284,7 +285,7 @@ void npc_player_initialize_move_not_biking(u8 direction, key keys) {
 
 void npc_player_turn_in_place(u8 direction) {
     if (!checkflag(FLAG_PLAYER_ON_LADDER)) {
-        npc_player_set_facing(direction);
+        npc_player_init_move_turn_in_place(direction);
     }
 }
 
@@ -326,7 +327,7 @@ void npc_player_initialize_move_on_bike(u8 direction, u8 unused, key keys_new, k
             // Appearently nothing happens?
             return;
         case COLLISION_NONE:
-        case 14:{ // This thing super weird, it is returned when stepping on cracked ice, I suppose 
+        case COLLISION_LADDER_BLOCKED:{ // This thing super weird, it is returned when stepping on cracked ice, I suppose 
             if (keys_held.keys.B && (checkflag(FLAG_CLOUD_HAS_HIGH_SPEED) || DEBUG_PLAYER_HAS_ALL_CLOUD_FEATURES)) { // High speed biking
                     // DEBUG("High speed biking...\n");
                     player_state.bike_speed = 4;
@@ -339,7 +340,7 @@ void npc_player_initialize_move_on_bike(u8 direction, u8 unused, key keys_new, k
                     overworld_effect_state.target_ow_and_their_map = save1->map;
                     overworld_effect_new(OVERWORLD_EFFECT_RAINBOW_SPARKLES);
                     npc_player_init_move_rainbow(direction);
-            } else if (collision == 14 || npc_player_walking_towards_rock_stairs(direction)) {
+            } else if (collision == COLLISION_LADDER_BLOCKED || npc_player_walking_towards_rock_stairs(direction)) {
                 npc_player_init_move_surfing(direction);
                 // DEBUG("Special collision event, collision %d, walking towards rock staris %d\n", collision, npc_player_walking_towards_rock_stairs(direction));
             } else {
@@ -413,6 +414,8 @@ void player_npc_controll_on_ladder(u8 direction, key keys) {
 void player_npc_move(u8 direction, key keys_new, key keys_held) {
     if (checkflag(FLAG_PLAYER_ON_LADDER)) {
         player_npc_controll_on_ladder(direction, keys_held);
+    } else if (checkflag(FLAG_PLAYER_ON_MINECART)) {
+        player_npc_controll_on_minecart(direction, keys_new, keys_held);
     } else if (player_state.state & (PLAYER_STATE_MACH_BIKE | PLAYER_STATE_ACRO_BIKE)) {
         player_npc_controll_biking(direction, keys_new, keys_held);
     } else {

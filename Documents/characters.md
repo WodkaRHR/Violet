@@ -74,11 +74,15 @@ Life Quest:
 
 ## Mistral, 2nd Commander
 - Joined because Primus promised him the weapon and access to legendary Pokémon
+    - more specifically, the three weather stones
 - Idol: The Dark Queen who ruled through legendary Pokémon
     - wants to utilize legendary Pokémon to become powerful
 - Half-brother to PLAYER
 - self-centered, ambitious
 - interested in history, great figures of the past
+    - was also an assistant of Tann before he discovered the three weather stones
+    - was very favored by Tann, because Mistral was also fascinated by "absurd" legends
+    - unlike Elise, who is more rational
 - trained Icarus, when exploring the cloud islands and learning about the ancient histroy
 
 ## Rin, 3rd Commander
@@ -98,6 +102,8 @@ Life Quest:
 - was Lucius' prodige, trained by him
 
 ## Devin
+- if lawyer idea is realized: Head of the "Firm", that trains lawyers
+- ambitious, crooked, egotistic
 
 ## Larissa
 
@@ -125,12 +131,15 @@ Life Quest:
 - "trained" by Mistral
 - tried more to imitate him and also become and explorer
 - maybe we can add a "catchphrase" that he copied from Mistral (oder other mannerisms?)
+- or should he be another one of Faun's pupils?
 
 # Misc
 
 ## Elise
 - Half-sister of Larissa
     - Share same mother
+- more rational thinking
+    - point of conflict with Tann: he prefers his former assistant, Mistral, who also had a thing for legends
 
 ## Felix
 

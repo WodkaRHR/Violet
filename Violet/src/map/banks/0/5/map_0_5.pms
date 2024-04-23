@@ -14,7 +14,7 @@
 					"target_index": 1,
 					"picture": 92,
 					"flag": "FELSIGE_ODNIS_ITEM_0",
-					"x": 17,
+					"x": "17",
 					"field_2": 0,
 					"level": 0,
 					"alert_radius": 0,
@@ -32,7 +32,7 @@
 						"type": 0,
 						"move_tutor": 0
 					},
-					"argument": 0,
+					"argument": "0",
 					"script_std_and_in_connection": {
 						"script_std": "PERSON_ITEM",
 						"in_connection": "0"
@@ -45,7 +45,7 @@
 					"target_index": 2,
 					"picture": 56,
 					"flag": "0x0",
-					"x": "8",
+					"x": "7",
 					"field_2": 0,
 					"level": 0,
 					"alert_radius": 2,

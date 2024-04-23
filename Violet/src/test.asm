@@ -27,6 +27,8 @@ str_afterb:
 	.string "After B"
 
 ow_script_test:
+	setflag FLAG_PLAYER_ON_MINECART
+	end
 	trainerbattlestd 0 0x300 0 str_beforea str_beforeb
 	end
 	clearflag FRBADGE_3

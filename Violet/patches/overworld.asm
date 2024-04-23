@@ -62,7 +62,7 @@ _blxr4_0x080bd3b4:
 
 .org 0x0805bba8
     push {r4, lr}
-    ldr r4, =npc_player_attempt_step | 1
+    ldr r4, =npc_get_collision_at | 1
     bl blxr4_0805bba8
     pop {r4}
     pop {r1}

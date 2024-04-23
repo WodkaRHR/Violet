@@ -104,14 +104,22 @@ enum {
 
 enum {
     RUNNING_STATE_NOT_MOVING,
-    RUNNING_STATE_TURNING,
-    RUNNING_STATE_MOVING,
+    RUNNING_STATE_TURNING, // change facing without taking a step
+    RUNNING_STATE_MOVING, // taking a step
 };
 
 enum {
     BIKE_STATE_NORMAL,
     BIKE_STATE_TURNING,
     BIKE_STATE_SLOPE
+};
+
+enum {
+    PLAYER_SPEED_NOT_MOVING,
+    PLAYER_SPEED_WALKING,
+    PLAYER_SPEED_FAST,
+    PLAYER_SPEED_FASTER,
+    PLAYER_SPEED_FASTEST,
 };
 
 #define OVERWORLD_IDX_VIEWPORT 0x7F
@@ -182,14 +190,14 @@ void player_reset_initial_state();
  * @param direction the direction the npc attempts to walk
  * @return the enumerated obstacle cause
  */
-u8 npc_get_collision(npc *n, s16 x, s16 y, u8 direction);
+u8 npc_get_collision(const npc *n, s16 x, s16 y, u8 direction);
 
 /**
  * Checks if a npc sees the player
  * @param n the npc instance to check
  * @param the enumerated obstacle cause
  */
-u8 npc_sees_player(npc *n);
+u8 npc_sees_player(const npc *n);
 
 
 /**
@@ -458,6 +466,12 @@ void npc_player_set_bike_state(u8 state);
 u8 player_get_facing();
 
 /**
+ * Gets the direction the player is moving into
+ * @return the direction the player is moving into
+ */
+u8 player_get_movement_direction();
+
+/**
  * Stops the movements of all non-player npcs
  **/
 void npc_stop_all_movements_but_players();
@@ -543,6 +557,17 @@ bool npc_is_movable_boulder_at(s16 x,s16 y,u8 direction);
  * @return collision which collision there is
  **/
 u8 npc_player_collision(u8 direction);
+
+/**
+ * Checks what collision there is for an npc to walk into a certain direction.
+ * @param n the npc to check the collision for
+ * @param x_dest the x coordinate of the target block
+ * @param y_dest the y coordinate of the target block
+ * @param direction the direction the npc attempts to walk into
+ * @param tile_behaviour the tile behaviour of the target block
+ * @return collision which collision there is
+*/
+u8 npc_get_collision_at(const npc *n, s16 x_dest, s16 y_dest, u8 direction, UNUSED u16 tile_behaviour);
 
 /**
  * Checks what collision there is for the player to bike into a certain direction.
@@ -656,7 +681,7 @@ void npc_set_facing(npc *n, u8 direction);
  * Makes the player face into a direction.
  * @param direction the direction to face into
  **/
-void npc_player_set_facing(u8 direction);
+void npc_player_init_move_turn_in_place(u8 direction);
 
 /**
  * Controls the player npc using the input when on a bike.
@@ -674,6 +699,19 @@ void player_npc_controll_biking(u8 direction, key keys_new, key keys_held);
  * @return idx which transition function to execute
  **/
 u8 player_npc_get_bike_transition_state(u8 *direction, key keys_new, key keys_held);
+
+/**
+ * Controls the player npc using the input when on a minecart
+ * @param direction the direction to move into
+ * @param keys_new newly pressed keys
+ * @param keys_held held keys
+ **/
+void player_npc_controll_on_minecart(u8 direction, UNUSED key keys_new, UNUSED key keys_held);
+
+/**
+ * Sets the bike to not moving, i.e. resets its tile count and speed
+*/
+void bike_reset_tile_count_and_speed();
 
 /**
  * Controls the player npc using the input when not on a bike.

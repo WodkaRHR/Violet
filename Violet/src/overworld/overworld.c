@@ -69,6 +69,7 @@ void map_reset_temporary_flags_and_vars() {
     clearflag(0x842);
     setflag(POKERADAR_POKEMON_SPAWNED);
     clearflag(FLAG_PLAYER_ON_LADDER);
+    clearflag(FLAG_PLAYER_ON_MINECART);
     for (size_t i = 0; i < ARRAY_COUNT(aggresive_wild_pokemon_flags); i++) {
         u16 flag = aggresive_wild_pokemon_flags[i];
         if ((rnd16() % 100) < aggressive_wild_pokemon_get_spawn_rate(flag)) {

@@ -62,7 +62,7 @@
  * @param behaviour
  * @return the diagonal move to do (0 if none)
  */
-u8 npc_attempt_diagonal_move(npc *n, s16 x_to_origin, s16 y_to_origin, u8 direction) {
+u8 npc_attempt_diagonal_move(const npc *n, s16 x_to_origin, s16 y_to_origin, u8 direction) {
 
     //first we create a dummy npc we can mess with
     npc ncpy = *n;
