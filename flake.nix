@@ -53,6 +53,32 @@
                   pytestCheckPhase = "true";
                 }));
 
+          # Build `pyclibrary`
+          pyclibrary = (
+            python3.pkgs.buildPythonPackage rec {
+              pname = "pyclibrary";
+              version = "0.2.2";
+
+              src = pkgs.fetchPypi {
+                inherit pname version;
+                sha256 = "mQL//jYbuG9Xq2KqQZXsTdOCtjxcaJK+bZeE7Ao1dfc=";
+              };
+
+              nativeBuildInputs =
+                with python3.pkgs;
+                [
+                  pip
+                ];
+
+              propagatedBuildInputs =
+                with python3.pkgs;
+                [
+                  pyparsing
+                ];
+
+              setuptoolsCheckPhase = "true";
+            });
+
           # Remove unnecessary (and conflicting) dependencies from `pyqtgraph`
           pyqtgraph = (
             python3.pkgs.pyqtgraph.overrideAttrs
@@ -294,6 +320,7 @@
         rec {
           packages = {
             inherit
+              pyclibrary
               armips
               gba-mus-ripper
               grit
@@ -319,6 +346,7 @@
                 midi2agb
                 pkgs.nixgl.nixGLIntel
                 pyagb
+                pyclibrary
                 python3
                 wav2agb
               ] ++ (
