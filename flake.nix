@@ -141,32 +141,21 @@ pyqt6
           # Build most recent supported version of `pyagb`
           pyagb = python3.pkgs.buildPythonPackage rec {
             pname = "pyagb";
-            version = "153d282646f90b91ec079bb8151e3f662bf73baa";
+            version = "45a1f7e81715e86835435c8db16be8fb045321ab";
+            pyproject = true;
 
             src = pkgs.fetchFromGitHub {
               owner = "dfuchsgruber";
               repo = pname;
               rev = version;
 
-              sha256 = "ZVzgXde2zbxKj3eEQLzHIzF2rS9Fe1oqVN6Hp81FdHI=";
+              sha256 = "eKmeJFQmKXKnZY1Rul2AuYknIxZRsOZtPFj6vpi8JSM=";
             };
-
-            preBuild = ''
-              export HOME=$(pwd)
-              # Fix syntax error in `pyagb`
-              sed -i \
-                -e "s/\(\"\),\?$/\1,/" \
-                -e "\$a }" \
-                pymap/config/description.py
-
-              # Remove broken files
-              rm -rf pymap/gui/deprecated
-              '';
 
             nativeBuildInputs =
               with python3.pkgs;
               [
-                pip
+                setuptools
               ];
 
             propagatedBuildInputs =
@@ -174,24 +163,18 @@ pyqt6
                 [
                   appdirs
                   colormath
-                  deepdiff
-                  numpy
-                  qt5Pillow
+                  pillow
+                  pyclibrary
                   pypng
-                  pyqt5
                   pyqtgraph
+                  pyside6
+                  scikit-image
                   scipy
-                  (
-                    # Use PyQt5 version of pillow in `scikit-image` and its dependencies
-                    scikit-image.override {
-                      inherit qt5Pillow;
-                      matplotlib = (matplotlib.override { inherit qt5Pillow; });
-                      imageio = (imageio.override { inherit qt5Pillow; });
-                    })
+                  typing-extensions
                 ];
 
             postInstall = ''
-              binName="pymapgui.py"
+              binName="pymap"
               pymap="$(mktemp -d --tmpdir="$out")/$binName"
               mv "$out/bin/$binName" "$pymap"
               makeWrapper "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/$binName" \
