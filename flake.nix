@@ -43,7 +43,7 @@
                 });
 
           # PyQt5 build version of pillow
-          pillow = (
+          qt5Pillow = (
             python3.pkgs.pillow.overrideAttrs
               (
                 final: previous:
@@ -181,7 +181,7 @@
                   colormath
                   deepdiff
                   numpy
-                  pillow
+                  qt5Pillow
                   pypng
                   pyqt5
                   pyqtgraph
@@ -189,9 +189,9 @@
                   (
                     # Use PyQt5 version of pillow in `scikit-image` and its dependencies
                     scikit-image.override {
-                      inherit pillow;
-                      matplotlib = (matplotlib.override { inherit pillow; });
-                      imageio = (imageio.override { inherit pillow; });
+                      inherit qt5Pillow;
+                      matplotlib = (matplotlib.override { inherit qt5Pillow; });
+                      imageio = (imageio.override { inherit qt5Pillow; });
                     })
                 ];
 
@@ -364,7 +364,7 @@
               grit
               mgba-wrapper
               midi2agb
-              pillow
+              qt5Pillow
               pyagb
               pyqtgraph
               wav2agb
