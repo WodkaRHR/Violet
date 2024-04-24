@@ -1,5 +1,5 @@
 diff --git a/src/agb/model/type.py b/src/agb/model/type.py
-index 8561806..1eeac5d 100644
+index 8561806..1231ea8 100644
 --- a/src/agb/model/type.py
 +++ b/src/agb/model/type.py
 @@ -196,7 +196,7 @@ class Type(ABC):
@@ -7,18 +7,15 @@ index 8561806..1eeac5d 100644
  def associate_with_constant(
      value: ScalarModelValue, proj: Project, constant: str | None
 -) -> int | str:
-+) -> int | str | None:
++) -> ScalarModelValue:
      """Tries to associate a value form a constant table of the pymap project.
  
      Parameters:
-@@ -222,7 +222,9 @@ def associate_with_constant(
+@@ -222,7 +222,6 @@ def associate_with_constant(
              warn(f'No match for value {value} found in constant table {constant}')
          else:
              warn(f'Constant table {constant} not found in project.')
 -    assert isinstance(value, int)
-+
-+    if value is None:
-+        print(value)
      return value
  
  
