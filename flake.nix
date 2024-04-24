@@ -79,6 +79,29 @@
               setuptoolsCheckPhase = "true";
             });
 
+          # Remove `dbus-python` dependency from `PyQt6`
+          pyqt6 = (
+            (pkgs.python311.pkgs.pyqt6.overrideAttrs (
+              final: previous:
+                {
+                  inherit (previous) pname version;
+                  propagatedBuildInputs =
+                    with python3.pkgs;
+                    [
+                      pyqt6-sip
+                      setuptools
+                    ];
+                })).override (
+                  {
+                    inherit (python3.pkgs)
+                      buildPythonPackage
+                      pyqt6-sip
+                      pyqt-builder
+                      setuptools
+                    ;
+                  })
+          );
+
           # Remove unnecessary (and conflicting) dependencies from `pyqtgraph`
           pyqtgraph = (
             python3.pkgs.pyqtgraph.overrideAttrs
