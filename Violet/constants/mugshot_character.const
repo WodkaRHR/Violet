@@ -40,6 +40,6 @@
         "MUGSHOT_ROSALIE",
         "MUGSHOT_MANUS",
         "MUGSHOT_ICARUS",
-        "NUM_MUGSHOTS",
+        "NUM_MUGSHOTS"
     ]
 }
