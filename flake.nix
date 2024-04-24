@@ -43,32 +43,6 @@
                   ;
                 });
 
-          # PyQt5 build version of pillow
-          qt5Pillow = (
-            python3.pkgs.pillow.overrideAttrs
-              (
-                final: previous:
-                rec {
-                  inherit (previous) pname;
-                  version = "9.5.0";
-
-                  src = pkgs.fetchPypi {
-                    pname = "Pillow";
-                    inherit version;
-                    sha256 = "v1SEedM2cm16Ds6252fhefveN4M65CeUYCYxoHDWMPE=";
-                  };
-
-                  patches = [
-                    (pkgs.fetchpatch {
-                      # Fixed type handling for include and lib directories; Remove with 10.0.0
-                      url = "https://github.com/python-pillow/Pillow/commit/0ec0a89ead648793812e11739e2a5d70738c6be5.patch";
-                      hash = "sha256-m5R5fLflnbJXbRxFlTjT2X3nKdC05tippMoJUDsJmy0=";
-                    })
-                  ];
-
-                  pytestCheckPhase = "true";
-                }));
-
           # Build `pyclibrary`
           pyclibrary = (
             python3.pkgs.buildPythonPackage rec {
@@ -131,7 +105,7 @@
                       sha256 = "Z7DTcUBcT9XzWv7P6zfUtzvBGPGHxSqWXtaNYvWbZ7M=";
                     };
 
-                                        propagatedBuildInputs =
+                    propagatedBuildInputs =
                       with python3.pkgs;
                       [
                         pyqt6
@@ -343,7 +317,6 @@
               grit
               mgba-wrapper
               midi2agb
-              qt5Pillow
               pyagb
               pyqtgraph
               wav2agb
