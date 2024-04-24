@@ -11,6 +11,7 @@
         "*.flags": "plaintext"
     },
     "python.defaultInterpreterPath": "python",
+    "python.terminal.activateEnvironment": false,
     "workbench.editorAssociations": {
         "*.gba": "hexEditor.hexedit",
         "*.ipynb": "jupyter-notebook"
