@@ -27,6 +27,7 @@
 
           python3 = pkgs.python312;
 
+          # Remove `nose` dependency from `colormath` (not supported by Python 3.12)
           colormath = (
             (pkgs.python311.pkgs.colormath.overrideAttrs (
               final: previous:
