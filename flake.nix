@@ -25,7 +25,7 @@
             };
           };
 
-          python3 = pkgs.python3;
+          python3 = pkgs.python312;
 
           colormath = (
             (pkgs.python311.pkgs.colormath.overrideAttrs (
