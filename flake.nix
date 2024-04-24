@@ -357,7 +357,8 @@
               nativeBuildInputs =
               with pkgs;
               [
-                  qt5.wrapQtAppsHook
+                  qt6.qtbase
+                  qt6.wrapQtAppsHook
                   makeWrapper
                   openssl
               ];
@@ -368,7 +369,7 @@
 
               # Force using Xorg over Wayland (Wayland does not seem to work with nixGL)
               QT_QPA_PLATFORM = "xcb";
-              QT_XCB_GL_INTEGRATION = "xcb_glxl";
+              QT_XCB_GL_INTEGRATION = "xcb_egl";
 
               # Allow using Qt5 in nix shell
               shellHook = ''
