@@ -338,7 +338,7 @@
                 gba-mus-ripper
                 gcc-arm-embedded
                 grit
-                mgba
+                mgba-wrapper
                 midi2agb
                 pkgs.nixgl.nixGLIntel
                 pyagb
