@@ -27,6 +27,21 @@
 
           python3 = pkgs.python3;
 
+          colormath = (
+            (pkgs.python311.pkgs.colormath.overrideAttrs (
+              final: previous:
+              {
+                nativeCheckInputs = [];
+                checkPhase = "true";
+                installCheckPhase = "true";
+              })).override {
+                  inherit (python3.pkgs)
+                    buildPythonPackage
+                    networkx
+                    numpy
+                  ;
+                });
+
           # PyQt5 build version of pillow
           pillow = (
             python3.pkgs.pillow.overrideAttrs
