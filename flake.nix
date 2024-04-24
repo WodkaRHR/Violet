@@ -127,6 +127,12 @@
               sha256 = "eKmeJFQmKXKnZY1Rul2AuYknIxZRsOZtPFj6vpi8JSM=";
             };
 
+            patches = [
+              ./tuple_conversion.patch
+              ./bitdepth.patch
+              ./type.patch
+            ];
+
             nativeBuildInputs =
               with python3.pkgs;
               [
