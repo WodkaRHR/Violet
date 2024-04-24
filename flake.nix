@@ -133,7 +133,7 @@
                                         propagatedBuildInputs =
                       with python3.pkgs;
                       [
-pyqt6
+                        pyqt6
                         numpy
                       ];
                   }));
