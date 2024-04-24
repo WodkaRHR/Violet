@@ -130,15 +130,10 @@
                       sha256 = "Z7DTcUBcT9XzWv7P6zfUtzvBGPGHxSqWXtaNYvWbZ7M=";
                     };
 
-                    buildInputs =
+                                        propagatedBuildInputs =
                       with python3.pkgs;
                       [
-                        pyqt5
-                      ];
-
-                    propagatedBuildInputs =
-                      with python3.pkgs;
-                      [
+pyqt6
                         numpy
                       ];
                   }));
