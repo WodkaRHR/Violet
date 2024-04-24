@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Flake for developing Pokémon V";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=2fd19c8be2551a61c1ddc3d9f86d748f4db94f00";
