@@ -126,7 +126,9 @@ pkgs.mkShellNoCC (
         binName="pymapgui.py"
         pymap="$(mktemp -d --tmpdir="$out")/$binName"
         mv "$out/bin/$binName" "$pymap"
-        makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/$binName" --add-flags "$pymap"
+        makeWrapper "${nixgl.nixGLIntel}/bin/nixGLIntel" "$out/bin/$binName" \
+          --run "[ ! -f .env ] || { set -o allexport; source ./.env; set +o allexport; }" \
+          --add-flags "$pymap"
       '';
     };
 
