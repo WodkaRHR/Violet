@@ -314,6 +314,9 @@ pkgs.mkShellNoCC (
 
     # Allow using Qt5 in nix shell
     shellHook = ''
+      set -o allexport; \
+      source ".env"; \
+      set +o allexport; \
       setQtEnvironment=$(mktemp)
       random=$(openssl rand -base64 20 | sed "s/[^a-zA-Z0-9]//g")
       makeWrapper "$(type -p sh)" "$setQtEnvironment" "''${qtWrapperArgs[@]}" --argv0 "$random"
