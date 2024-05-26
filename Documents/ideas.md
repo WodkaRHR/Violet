@@ -1,4 +1,4 @@
-### Island in the South
+### Island in the South (discard, doesnt advance the story)
 
 - Punk group holds an island hostage
 - Maybe free that island together with Felix
@@ -13,6 +13,9 @@
 # Cloud World
 
 ### The Dark Queen
+    - Stole the Tesseract (time stone) to fight the Chrones
+    - 
+
     - ruler of Atlantea
     - tried opposing the "gods" (Chrones) by binding legendary Pokémon
     - her sky island was sunk into the ocean as punishment

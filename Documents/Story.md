@@ -91,3 +91,4 @@
 - Somehow Blaise should confront his father here and lose (or maybe that should happen earlier?)
 - Here, Blaise should also join the revolution
 - Maybe, we can introduce the commander-in-chief of the revolution
+- Devin runs the "advocates", who can bail out any criminial by fighting

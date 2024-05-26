@@ -60,14 +60,20 @@
     - insecure
     - kind
     - weak-minded, gives up easily
+- ambivalent:
+    - is only so much persuaded by Deoxys as it promises him fame as a scientist using space travel
+
 
 ## Lucius, 1st Commander
 - Former champ, was defeated by Larissa
 - after losing a rematch, was recruited by Primus
     - he promised Lucius to overthrow the E4 and reinstall him as the Champ
+    - Lucius does not buy Primus' promise and suspects that Primus secretly wants to take over
+        - Therefore, Lucius plans on taking the weapon that Primus claims to build for himself
 - arrogant
 - focus on power and strength
 - highly ambitious
+- also somewhat fond of the advocate system, as it rewards power and goes with "power is law"
 Life Quest:
 - Hunt down Rayquaza, that injured him in his younger days almost deadly
 - Whole Team is "Dragon-Slayer" like
@@ -96,6 +102,8 @@ Life Quest:
 
 ## Danica
 - was Lucius' prodige, trained by him
+- how much of his brute-force nature did she inhert?
+    - she should be somewhat distinct: power-oriented, but also kind hearted
 
 ## Devin
 
@@ -141,13 +149,16 @@ Life Quest:
 ## Rival
 
 ## Prof. Tann
+- Discovered the Magmaherz years ago in the cloud ruins
+- Now is set to discover the sunken city of Atlantea
+
 - Father to RIVAL
 - Life goal: Discover Atlantea
 - Archeologist
 
 # Chrones
 
-## PLAYER's DAD
+## PLAYER's DAD (Adam)
 - defeated the Dark Queen, hero to Chrones
 - recently vanished:
     - got two children: PLAYER and Mistral, with different women
@@ -155,12 +166,17 @@ Life Quest:
     - wants to use his two children for that
 
 ## Emerys
+- leader of the first generation of Chrones
+- absolutely loyal to Eve
+
 ## Saphira
 - partner in-crime to Rubys
     - Kranzwald: Made it rain
-    - original owner of the "Aquaherz"
+    - original owner of the "Ozensoul"
     - lost it, when fighting against the Dark Queen together with other Chrones in Atlantea
 - has the power of Kyogre: Rain
+- Incarnation of the Ozeansould
+- in favor of PLAYER, but loyal to her "mother", Eve
 ## Rubys
 - original owner of the Magmaherz
     - maybe takes it back from Mistral after encounter?
@@ -168,3 +184,5 @@ Life Quest:
 - helps them out:
     - Volcano: Made it stop erupting
 - has the power of Groudon: Eruption / Landmasses, etc
+- incarnation of the Magmaherz
+- in favor of PLAYER, questions his loyality to Eve more
