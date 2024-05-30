@@ -296,3 +296,4 @@ all: $(BLDROM) soundfont
 		
 clean:
 	bash -O extglob -c "rm -rf $(BLDPATH)/!(*.sav|*.sgm)"
+	rm -rf $(CONSTANTSHAS) $(CONSTANTSHC)
