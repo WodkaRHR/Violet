@@ -6,7 +6,7 @@ from agb import image as agbimage
 from agb import palette as agbpalette
 import struct
 
-base = './base/bprd.gba'
+base = os.environ.get("BASEROM") or './base/bprd.gba'
 sprite_table = 0x39FC74
 palette_table = 0x3A501C
 

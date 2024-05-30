@@ -1,16 +1,15 @@
 {
 	"recommendations": [
-		"ms-vscode.cpptools"
-	],
-	"unwantedRecommendations": [
 		"bungcip.better-toml",
 		"dan-c-underwood.arm",
 		"janisdd.vscode-edit-csv",
-		"mhutchie.git-graph",
-		"ms-azuretools.vscode-docker",
+		"llvm-vs-code-extensions.vscode-clangd",
+		"mechatroner.rainbow-csv",
+		"mkhl.direnv",
 		"ms-python.python",
-		"ms-vscode.cpptools",
-		"ms-vscode.hexeditor",
-		"ms-vscode.makefile-tools"
+		"ms-vscode.hexeditor"
+	],
+	"unwantedRecommendations": [
+		"ms-vscode.cpptools"
 	]
 }

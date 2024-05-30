@@ -1,3 +1,37 @@
+SHELL=bash
+ENV_FILE=.env
+ENV_PATH=../$(ENV_FILE)
+
+$(shell \
+	envFile=".env"; \
+	envPath="../$$envFile";  \
+	\
+	if [ ! -f "$$envPath" ]; \
+	then \
+		{ \
+			echo "The environment file \`$(ENV_FILE)\` could not be found!"; \
+			echo "Please enter all necessary settings in the newly created $(ENV_FILE) file located at $$(realpath --relative-to "$$(pwd)" "$(ENV_PATH)")."; \
+			cp ../.env.template "$(ENV_PATH)"; \
+			false; \
+		} 1>&2; \
+	fi;)
+
+define loadPathConfig
+$(or $(shell \
+		set -o allexport; \
+		. "$(ENV_PATH)"; \
+		set +o allexport; \
+		cd "$$(dirname "$(ENV_PATH)")"; \
+		if [ ! -z "$$$(1)" ]; \
+		then \
+			echo "$$(realpath -m "$$$(1)")"; \
+		fi),$(2),$(3))
+endef
+
+ifneq ($(.SHELLSTATUS),0)
+$(error Warning: Please review the console output for more information)
+endif
+
 WAV2AGB=@wav2agb
 AR=arm-none-eabi-ar
 AS=@arm-none-eabi-as
@@ -41,7 +75,7 @@ MAPTILESETGRITFLAGS=-gu32 -gzl -gB 4 -gt -m! -p!
 
 BLDPATH=bld
 BLDROM=$(BLDPATH)/violet.gba
-BASEROM ?= base/bprd.gba
+BASEROM := $(call loadPathConfig,BASEROM,$(BASEROM),base/bprd.gba)
 MAPPROJ=proj.pmp
 SYMBOLDUMP=$(BLDPATH)/symbols
 BASESYMBOLS=bprd.sym
@@ -52,8 +86,8 @@ PKLPATH=pkl
 MOVESETPKL=$(addprefix $(PKLPATH)/, $(addsuffix .pkl, $(shell tools/pokemon_move_generator/get_species.py $(MAPPROJ) $(SPECIESCONSTANTTABLE))))
 
 # Soundfont ripper
-PSG_DATA ?= psg_data.raw
-GOLDENSUN_SYNTH ?= goldensun_synth.raw
+PSG_DATA ?= $(call loadPathConfig,PSG_DATA,$(PSG_DATA),psg_data.raw)
+GOLDENSUN_SYNTH ?= $(call loadPathConfig,GOLDENSUN_SYNTH,$(GOLDENSUN_SYNTH),goldensun_synth.raw)
 
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))#
 
@@ -127,7 +161,9 @@ define build_list
 	$(file >>$(1),$(CLOSEPAREN))
 endef
 
-.PHONY: all clean soundfont test
+.PHONY: all clean soundfont test init
+
+init:
 
 $(CONSTANTSHAS): include/as/%.s: %.const
 	$(shell mkdir -p $(dir $@))
@@ -252,7 +288,7 @@ soundfont: $(BLDROM)
 $(BLDROM): $(CONSTANTSHAS) $(CONSTANTSHC) $(BLDPATH)/asset.ld $(BLDPATH)/map.ld $(BLDPATH)/sources.ld $(BLDPATH)/midi.ld $(EXPORTED_STATS_OBJ) $(PATCHES) patches.asm $(BASESYMBOLS) linker.ld
 	@echo "Creating rom object..."
 	$(LD) $(LDFLAGS) -T linker.ld -T $(BASESYMBOLS) -T $(BLDPATH)/midi.ld -T $(BLDPATH)/asset.ld -T $(BLDPATH)/map.ld -T $(BLDPATH)/sources.ld -o $(BLDPATH)/linked.o $(EXPORTED_STATS_OBJ)
-	$(ARS) patches.asm -sym $(SYMBOLDUMP) -strequ bldrom $(BLDROM) -strequ base $(BASEROM)
+	$(ARS) patches.asm -sym $(SYMBOLDUMP) -strequ bldrom $(BLDROM) -strequ base "$(BASEROM)"
 	# Validation
 	./tools/index/worldmap.py $(BLDROM) $(MAPPROJ) $(SYMBOLDUMP) worldmap_positions
 	

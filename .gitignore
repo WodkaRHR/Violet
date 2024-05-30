@@ -1,3 +1,6 @@
+# Config files
+.env
+
 # Constants
 Violet/include/c/constants
 Violet/include/as/constants/
