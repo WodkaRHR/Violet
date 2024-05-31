@@ -45,10 +45,10 @@ ARS=@armips
 MID2AGB=midi2agb
 #MID2AGB=/media/d/romhacking/midi2agb/midi2agb
 PY3=@python3
-BIN2S=@bin2s.py
-PYMAP2S=pymap2s.py
-PYPREPROC=@pypreproc.py
-PYMAPCONSTEX=pymapconstex.py
+BIN2S=@bin2s
+PYMAP2S=pymap2s
+PYPREPROC=@pypreproc
+PYMAPCONSTEX=pymapconstex
 READELF=@arm-none-eabi-readelf
 SOUNDFONTRIPPER=sound_font_ripper
 FONT2S=tools/font/font2s.py
@@ -296,3 +296,4 @@ all: $(BLDROM) soundfont
 		
 clean:
 	bash -O extglob -c "rm -rf $(BLDPATH)/!(*.sav|*.sgm)"
+	rm -rf $(CONSTANTSHAS) $(CONSTANTSHC)
