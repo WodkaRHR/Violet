@@ -27,22 +27,6 @@
 
           python3 = pkgs.python312;
 
-          # Remove `nose` dependency from `colormath` (not supported by Python 3.12)
-          colormath = (
-            (python3.pkgs.colormath.overrideAttrs (
-              final: previous:
-              {
-                nativeCheckInputs = [];
-                checkPhase = "true";
-                installCheckPhase = "true";
-              })).override {
-                  inherit (python3.pkgs)
-                    buildPythonPackage
-                    networkx
-                    numpy
-                  ;
-                });
-
           # Build `pyclibrary`
           pyclibrary = (
             python3.pkgs.buildPythonPackage rec {
@@ -68,50 +52,6 @@
 
               setuptoolsCheckPhase = "true";
             });
-
-          # Remove `dbus-python` dependency from `PyQt6`
-          pyqt6 = (
-            (pkgs.python311.pkgs.pyqt6.overrideAttrs (
-              final: previous:
-                {
-                  inherit (previous) pname version;
-                  propagatedBuildInputs =
-                    with python3.pkgs;
-                    [
-                      pyqt6-sip
-                      setuptools
-                    ];
-                })).override (
-                  {
-                    inherit (python3.pkgs)
-                      buildPythonPackage
-                      pyqt6-sip
-                      pyqt-builder
-                      setuptools
-                    ;
-                  })
-          );
-
-          # Remove unnecessary (and conflicting) dependencies from `pyqtgraph`
-          pyqtgraph = (
-            python3.pkgs.pyqtgraph.overrideAttrs
-              (
-                final: previous:
-                  rec {
-                    inherit (previous) pname version;
-
-                    src = pkgs.fetchPypi {
-                      inherit pname version;
-                      sha256 = "ZPhPGTXGmW0OCbHuZv5Hindx48pvOqoF8A9uBoMh2eM=";
-                    };
-
-                    propagatedBuildInputs =
-                      with python3.pkgs;
-                      [
-                        pyqt6
-                        numpy
-                      ];
-                  }));
 
           # Build most recent supported version of `pyagb`
           pyagb = python3.pkgs.buildPythonPackage rec {
@@ -317,7 +257,6 @@
               mgba-wrapper
               midi2agb
               pyagb
-              pyqtgraph
               wav2agb
             ;
           };
