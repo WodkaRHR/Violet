@@ -2,8 +2,8 @@
   description = "Flake for developing Pokémon V";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=2fd19c8be2551a61c1ddc3d9f86d748f4db94f00";
-    nixgl.url = "github:nix-community/nixGL?ref=def00794f963f51ccdcf19a512006bd7f9c78970";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=b833ff01a0d694b910daca6e2ff4a3f26dee478c";
+    nixgl.url = "github:nix-community/nixGL?ref=310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
     flake-utils.url = "github:numtide/flake-utils?ref=b1d9ab70662946ef0850d488da1c9019f3a9752a";
   };
 
@@ -29,7 +29,7 @@
 
           # Remove `nose` dependency from `colormath` (not supported by Python 3.12)
           colormath = (
-            (pkgs.python311.pkgs.colormath.overrideAttrs (
+            (python3.pkgs.colormath.overrideAttrs (
               final: previous:
               {
                 nativeCheckInputs = [];
@@ -102,7 +102,7 @@
 
                     src = pkgs.fetchPypi {
                       inherit pname version;
-                      sha256 = "Z7DTcUBcT9XzWv7P6zfUtzvBGPGHxSqWXtaNYvWbZ7M=";
+                      sha256 = "ZPhPGTXGmW0OCbHuZv5Hindx48pvOqoF8A9uBoMh2eM=";
                     };
 
                     propagatedBuildInputs =
