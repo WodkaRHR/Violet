@@ -169,14 +169,14 @@
             with pkgs;
             rec {
               pname = "armips";
-              version = "a8d71f0f279eb0d30ecf6af51473b66ae0cf8e8d";
+              version = "0febea0aecee2e2186529f0bbd180b06ce7e275c";
 
               src = fetchFromGitHub {
                 owner = "Kingcom";
                 repo = pname;
                 rev = version;
                 fetchSubmodules = true;
-                sha256 = "+W9SwlM6CqK8bz07U3yFgZNydo2mI4TvMvepPiqtIS4=";
+                sha256 = "3E9WYjoCBh/032HWw8YgPuARxSaBp5uW1nlX6CJTGCE=";
               };
 
               buildInputs = [
