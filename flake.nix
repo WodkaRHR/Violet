@@ -367,7 +367,7 @@
               # Allow using Qt5 in nix shell
               shellHook = ''
                 set -o allexport; \
-                source ".env"; \
+                [ ! -f ".env" ] || source ".env"; \
                 set +o allexport; \
                 setQtEnvironment=$(mktemp)
                 random=$(openssl rand -base64 20 | sed "s/[^a-zA-Z0-9]//g")
