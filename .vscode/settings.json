@@ -15,5 +15,6 @@
     "workbench.editorAssociations": {
         "*.gba": "hexEditor.hexedit",
         "*.ipynb": "jupyter-notebook"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

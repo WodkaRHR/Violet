@@ -241,6 +241,8 @@ extern const unsigned char mus_clouds_theme_waltz[];
 extern const unsigned char mus_clouds_theme_var_trumpets[];
 extern const unsigned char mus_violet_hq2[];
 extern const unsigned char mus_violet_encounter3[];
+extern const unsigned char mus_violet_battle2[];
+extern const unsigned char mus_violet_battle2_elite[];
 
 #endif	/* MUSIC_H */
 

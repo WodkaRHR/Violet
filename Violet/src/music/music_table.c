@@ -698,7 +698,8 @@ const song song_table[] = {
 	//Song 346
 	{(void*) 0x86fa4b0, SONG_TYPE_SONG, SONG_TYPE_SONG},
 	//Song 347
-	{mus_battle_violet, SONG_TYPE_SONG, SONG_TYPE_SONG},
+	// {mus_battle_violet, SONG_TYPE_SONG, SONG_TYPE_SONG},
+	{mus_violet_battle2, SONG_TYPE_SONG, SONG_TYPE_SONG},
 	//Song 348
 	{sound_step, SONG_TYPE_SOUND, SONG_TYPE_SOUND},
 	//Song 349
@@ -784,4 +785,5 @@ const song song_table[] = {
 	[MUS_CLOUDS_VARIATION_5_TRUMPETS] = {mus_clouds_theme_var_trumpets, SONG_TYPE_SONG, SONG_TYPE_SONG},
 	[MUS_VIOLET_HQ2] = {mus_violet_hq2, SONG_TYPE_SONG, SONG_TYPE_SONG},
 	[MUS_VIOLET_ENCOUNTER_2] = {mus_violet_encounter3, SONG_TYPE_SONG, SONG_TYPE_SONG},
+	[MUS_VIOLET_ELITE] = {mus_violet_battle2_elite, SONG_TYPE_SONG, SONG_TYPE_SONG},
 };
